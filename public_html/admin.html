@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GARAGE 36 — Administrador</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-brand">
+      <h2>GARAGE 36</h2>
+      <span class="badge-role">Administrador</span>
+    </div>
+    <button id="btn-logout" class="btn btn-secondary">Cerrar Sesión</button>
+  </header>
+
+  <main class="grid-layout">
+    <section class="card">
+      <div class="card-header">
+        <h3>Ingresar Vehículo</h3>
+      </div>
+      <form id="form-entrada">
+        <div class="form-group">
+          <label for="placa">Placa del Vehículo</label>
+          <input type="text" id="placa" class="mono-input" placeholder="P-123ABC" style="text-transform: uppercase;" required>
+        </div>
+
+        <div class="form-group">
+          <label for="espacio">Espacio Asignado</label>
+          <input type="text" id="espacio" class="mono-input" placeholder="A-01" style="text-transform: uppercase;" required>
+        </div>
+
+        <div class="form-group">
+          <label for="tarifa_id">Tipo de Tarifa</label>
+          <select id="tarifa_id" required>
+            <option value="">Cargando tarifas...</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Registrar Entrada</button>
+      </form>
+      <div id="msg-entrada" class="msg-box"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <h3>Vehículos Registrados</h3>
+      </div>
+      <div class="table-responsive">
+        <table id="tabla-estancias">
+          <thead>
+            <tr>
+              <th>Placa</th>
+              <th>Espacio</th>
+              <th>Hora Entrada</th>
+              <th>Tarifa</th>
+              <th>Estado</th>
+              <th>Acción / Total</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-estancias">
+            <tr>
+              <td colspan="6" style="text-align: center;">Cargando registros...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

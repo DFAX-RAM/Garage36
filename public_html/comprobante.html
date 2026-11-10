@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprobante — GARAGE 36</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      padding: 20px;
+      background: #F2E8D5;
+      display: flex;
+      justify-content: center;
+    }
+    .ticket {
+      background: #FFF9EF;
+      width: 320px;
+      padding: 24px;
+      border: 2px dashed #751F2B;
+      text-align: center;
+      color: #3B2A23;
+    }
+    .ticket h2 { margin-bottom: 4px; font-size: 1.5rem; color: #751F2B; }
+    .ticket p { font-size: 0.85rem; margin: 4px 0; }
+    .divider { border-top: 1px dashed #751F2B; margin: 12px 0; }
+    .row { display: flex; justify-content: space-between; text-align: left; margin: 6px 0; font-size: 0.9rem; }
+    .row span:first-child { font-weight: bold; }
+    .total-box { font-size: 1.3rem; font-weight: bold; margin-top: 10px; color: #751F2B; }
+    .btn-print {
+      margin-top: 16px;
+      width: 100%;
+      padding: 10px;
+      background: #751F2B;
+      color: #FFF9EF;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+    @media print {
+      body { background: #FFF9EF; padding: 0; }
+      .ticket { border: none; width: 100%; }
+      .btn-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ticket">
+    <h2>GARAGE 36</h2>
+    <p>Comprobante de Pago</p>
+    <div class="divider"></div>
+    
+    <div class="row"><span>No. Ticket:</span> <span id="t-id">-</span></div>
+    <div class="row"><span>Placa:</span> <span id="t-placa">-</span></div>
+    <div class="row"><span>Espacio:</span> <span id="t-espacio">-</span></div>
+    <div class="row"><span>Horas:</span> <span id="t-horas">-</span> hrs</div>
+    <div class="row"><span>Fecha:</span> <span id="t-fecha">-</span></div>
+    
+    <div class="divider"></div>
+    <div class="total-box">TOTAL: Q<span id="t-total">0.00</span></div>
+    <div class="divider"></div>
+
+    <p>¡Gracias por su preferencia!</p>
+    <button class="btn-print" onclick="window.print()">Imprimir Ticket</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById('t-id').textContent = params.get('id') || '-';
+    document.getElementById('t-placa').textContent = params.get('placa') || '-';
+    document.getElementById('t-espacio').textContent = params.get('espacio') || '-';
+    document.getElementById('t-horas').textContent = params.get('horas') || '1';
+    document.getElementById('t-total').textContent = params.get('total') || '0.00';
+    document.getElementById('t-fecha').textContent = new Date().toLocaleString('es-GT');
+  </script>
+</body>
+</html>
